@@ -43,7 +43,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="post">
+                            <form action="{{ route('criteria.store') }}" method="post">
+                                @csrf
                                 <div class="form-group">
                                     <label for="nama" class="col-form-label">Nama *</label>
                                     <input id="nama" type="text" class="form-control" name="nama" required>
@@ -53,7 +54,7 @@
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
-                                
+
                             </form>
                         </div>
 
@@ -71,16 +72,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($kriteria as $key)
                             <tr>
-                                <td>asdnj</td>
+                                <td>{{ $key->nama }}</td>
                                 <td>
-                                    <form action="" method="POST">
+                                    <form action="{{route('criteria.destroy',[$key->id])}}" method="POST">
                                         <input type="hidden" name="_method" value="Delete">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-danger" value="Delete">
                                     </form>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

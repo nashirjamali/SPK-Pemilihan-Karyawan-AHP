@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Kriteria;
 use Illuminate\Http\Request;
 
 class CriteriaController extends Controller
@@ -13,7 +14,8 @@ class CriteriaController extends Controller
      */
     public function index()
     {
-        return view('page.kriteria.index');
+        $data['kriteria'] = Kriteria::all();
+        return view('page.kriteria.index', $data);
     }
 
     /**
@@ -34,7 +36,11 @@ class CriteriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kriteria = new Kriteria;
+        $kriteria->fill($request->all());
+        $kriteria->save();
+
+        return redirect('/criteria');
     }
 
     /**
@@ -79,6 +85,8 @@ class CriteriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Kriteria::findOrFail($id)->delete();
+
+        return redirect('/criteria');
     }
 }
