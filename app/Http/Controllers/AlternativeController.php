@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Alternatif;
 use Illuminate\Http\Request;
 
 class AlternativeController extends Controller
@@ -13,7 +14,9 @@ class AlternativeController extends Controller
      */
     public function index()
     {
-        return view('page.alternatif.index');
+
+        $data['alternatif'] = Alternatif::all();
+        return view('page.alternatif.index',$data);
     }
 
     /**
@@ -34,7 +37,8 @@ class AlternativeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Alternatif::create($request->all());
+        return redirect('alternative')->with('success', 'Data telah terkirim');
     }
 
     /**
@@ -79,6 +83,8 @@ class AlternativeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $alternatif = Alternatif::findOrFail($id);
+        $alternatif->delete();
+        return redirect()->route('alternative.index')->with(['success' => 'Data berhasil dihapus']);
     }
 }
