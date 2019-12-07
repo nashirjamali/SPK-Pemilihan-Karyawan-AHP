@@ -10,13 +10,10 @@
                     Menu
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link active" href="#"><i class="fa fa-fw fa-user-circle"></i>Beranda</a>
+                    <a class="nav-link {{ request()->is('criteria') ? 'active' : '' }}" href="/criteria">Kriteria</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#"><i class="fa fa-fw fa-user-circle"></i>Kriteria</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#"><i class="fa fa-fw fa-user-circle"></i>Alternatif</a>
+                    <a class="nav-link {{ request()->is('alternative') ? 'active' : '' }}" href="/alternative">Alternatif</a>
                 </li>
             </ul>
         </div>

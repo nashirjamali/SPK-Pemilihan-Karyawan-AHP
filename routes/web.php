@@ -11,6 +11,11 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
-    return view('page.beranda.index');
+    return redirect('/criteria');
 });
+
+Route::resource('criteria', 'CriteriaController');
+Route::resource('alternative', 'AlternativeController');
